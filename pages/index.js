@@ -1,6 +1,15 @@
-import Head from "next/head";
-import styles from "../styles/Home.module.css";
-
+import SearchLink from "../components/SearchLink";
 export default function Home() {
-  return <div className="text-xl text-green-700">Hello</div>;
+  return (
+    <div className="w-full h-full bg-gray-300">
+      (
+      <div
+        className="w-full h-full flex flex-col justify-center items-center p-4"
+        style={{ minWidth: 250, maxWidth: 600, margin: "auto" }}
+      >
+        <SearchLink />
+      </div>
+      )
+    </div>
+  );
 }
