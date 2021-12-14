@@ -3,6 +3,7 @@ import { supabase } from "../lib/initSupabase";
 import SearchList from "../components/SearchList";
 const Admin = () => {
   const [searchList, setSearchLit] = useState([]);
+  console.log(searchList);
   const [currentId, setCurrentId] = useState("");
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -13,8 +14,8 @@ const Admin = () => {
   }, []);
   const fetchList = async () => {
     const { data, error } = await supabase
-      .from("searchLinks")
-      .select("*")
+      .from("keywords")
+      .select(`*,links(id,created_at,link, rating, kid)`)
       .order("id", true);
     if (error) console.log("error", error);
     else setSearchLit(data);
@@ -40,6 +41,7 @@ const Admin = () => {
   };
   return (
     <>
+      {/* This is admin panel. */}
       <div className="p-10">
         {searchList.map((link) => (
           <SearchList

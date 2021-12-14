@@ -35,9 +35,18 @@ const SearchList = ({ id, createdAt, title, links }) => {
         </div>
       </div>
       <div className={currentId === id && open ? "block" : "hidden"}>
-        {links.map((link) => (
-          <Link link={link.link} id={id} title={title} linkId={link.id} />
-        ))}
+        {links.length !== 0 ? (
+          links.map((link) => (
+            <Link
+              link={link.link}
+              kid={link.kid}
+              id={link.id}
+              rating={link.rating}
+            />
+          ))
+        ) : (
+          <div>This keyword has no links found and stored in the database.</div>
+        )}
       </div>
     </div>
   );
