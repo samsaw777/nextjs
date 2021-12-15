@@ -30,7 +30,7 @@ const SearchList = () => {
       {
         kid: keywordId,
         link: link,
-        rating: null,
+        rating: 0,
       },
     ]);
 

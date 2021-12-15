@@ -15,26 +15,26 @@ const Admin = () => {
   const fetchList = async () => {
     const { data, error } = await supabase
       .from("keywords")
-      .select(`*,links(id,created_at,link, rating, kid)`)
+      .select(`*`)
       .order("id", true);
     if (error) console.log("error", error);
     else setSearchLit(data);
   };
 
-  const addRating = async (id, e) => {
-    e.preventDefault();
-    setLoading(true);
-    const { error } = await supabase
-      .from("searchList")
-      .update({ rating: ratingValue })
-      .eq("id", id);
-    if (error) {
-      console.log("error", error);
-    } else {
-      setLoading(false);
-      console.log("Updated the rating of the link in the database.");
-    }
-  };
+  // const addRating = async (id, e) => {
+  //   e.preventDefault();
+  //   setLoading(true);
+  //   const { error } = await supabase
+  //     .from("searchList")
+  //     .update({ rating: ratingValue })
+  //     .eq("id", id);
+  //   if (error) {
+  //     console.log("error", error);
+  //   } else {
+  //     setLoading(false);
+  //     console.log("Updated the rating of the link in the database.");
+  //   }
+  // };
   const showList = (id) => {
     setCurrentId(id);
     setOpen((open) => !open);
@@ -48,7 +48,7 @@ const Admin = () => {
             id={link.id}
             createdAt={link.created_at}
             title={link.title}
-            links={link.links}
+            // links={link.links}
           />
         ))}
       </div>

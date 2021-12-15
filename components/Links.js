@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { supabase } from "../lib/initSupabase";
-const Lists = ({ link, id, rating, kid }) => {
-  const [searchList, setSearchLit] = useState([]);
+const Lists = ({ link, id, rating, kid, fetchLinkVariable }) => {
   const [error, setError] = useState(false);
   console.log(error);
   const [loading, setLoading] = useState(false);
   const [ratingValue, setRatingValue] = useState(0);
-  const [ratingStar, setRatingStar] = useState(false);
 
   //check if the value is less than 5 or not
   const checkRatingValue = (value) => {
@@ -31,6 +29,7 @@ const Lists = ({ link, id, rating, kid }) => {
       console.log("error", error);
     } else {
       console.log("rating done");
+      fetchLinkVariable();
       setLoading(false);
       setRatingValue(0);
     }
@@ -38,7 +37,17 @@ const Lists = ({ link, id, rating, kid }) => {
   return (
     <>
       <div className="flex justify-between pb-2" key={id}>
-        <div className="max-w-4xl">{link}</div>
+        <div className="flex">
+          <span className="mr-5">{id}</span>
+
+          <a
+            className="max-w-4xl hover:text-blue-500"
+            href={link}
+            target="_blank"
+          >
+            {link}
+          </a>
+        </div>
         <div>
           <div className={"flex"}>
             <form className="flex" onSubmit={(e) => addRating(id, e)}>

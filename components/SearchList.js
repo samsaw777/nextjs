@@ -1,9 +1,30 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { supabase } from "../lib/initSupabase";
 import Link from "./Links";
-const SearchList = ({ id, createdAt, title, links }) => {
+const SearchList = ({ id, createdAt, title }) => {
   const [currentId, setCurrentId] = useState("");
   const [open, setOpen] = useState(false);
+  const [links, setLinks] = useState([]);
+  const [fetctLinkVariable, setFetchLinkVariable] = useState(false);
+  console.log(links);
+  //fetch the links corresponding the keyword id
+  const fetchLinks = async () => {
+    const { data: links, errors } = await supabase
+      .from("links")
+      .select("*")
+      .match({ kid: id })
+      .match({ rating: 0 });
+
+    if (errors) {
+      console.log(errors);
+    } else {
+      setLinks(links);
+    }
+  };
+  //onLoad fetch the links
+  useEffect(() => {
+    fetchLinks();
+  }, [fetctLinkVariable]);
 
   const showList = (id) => {
     setCurrentId(id);
@@ -42,6 +63,7 @@ const SearchList = ({ id, createdAt, title, links }) => {
               kid={link.kid}
               id={link.id}
               rating={link.rating}
+              fetchLinkVariable={setFetchLinkVariable}
             />
           ))
         ) : (
