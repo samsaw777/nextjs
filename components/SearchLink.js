@@ -84,21 +84,26 @@ const SearchList = () => {
         <form onSubmit={searchTopTenSites}>
           <div className="flex gap-2 my-2">
             <input
-              className="rounded w-full p-2"
+              className="rounded w-full p-2 border-2 border-gray-400 focus:outline-none"
               type="text"
-              placeholder="make coffee"
+              placeholder="keyword (Eg: Web 3.0)"
               value={newTaskText}
               onChange={(e) => {
                 setError("");
                 setNewTaskText(e.target.value);
               }}
             />
-            <button className="btn-black" type="submit">
+            <button
+              className="bg-purple-500 p-5 rounded text-white"
+              type="submit"
+            >
               Search
             </button>
           </div>
         </form>
       )}
+
+      {fetching && <div>Fetching Links.</div>}
     </div>
   );
 };

@@ -4,7 +4,7 @@ const Lists = ({ link, id, rating, kid, fetchLinkVariable }) => {
   const [error, setError] = useState(false);
   console.log(error);
   const [loading, setLoading] = useState(false);
-  const [ratingValue, setRatingValue] = useState(0);
+  const [ratingValue, setRatingValue] = useState();
 
   //check if the value is less than 5 or not
   const checkRatingValue = (value) => {
@@ -57,9 +57,10 @@ const Lists = ({ link, id, rating, kid, fetchLinkVariable }) => {
                   value={ratingValue}
                   onChange={(e) => checkRatingValue(e.target.value)}
                   className={
-                    !error
-                      ? "bg-gray-200 appearance-none border-2 border-gray-200 rounded w-20 py-2 px-2 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 mr-2"
-                      : "bg-gray-200 appearance-none border-2 border-red-700 rounded w-20 py-2 px-2 text-gray-700 leading-tight  focus:bg-white focus:border-red-700 mr-2"
+                    "bg-gray-200 appearance-none border-2 border-gray-200 rounded w-20 py-2 px-2 text-gray-700 leading-tight focus:outline-none focus:bg-white  mr-2" +
+                    (error
+                      ? "border-2 focus:border-red-700"
+                      : "border-2 focus:border-gray-900")
                   }
                 />
                 <span>/5</span>

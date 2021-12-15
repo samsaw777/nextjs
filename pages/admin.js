@@ -42,6 +42,7 @@ const Admin = () => {
   return (
     <>
       {/* This is admin panel. */}
+      <div className="p-2 flex justify-center text-2xl ">Admin</div>
       <div className="p-10">
         {searchList.map((link) => (
           <SearchList
