@@ -8,7 +8,7 @@ const SearchList = () => {
   const [keyword, setKeyword] = useState("");
   const [errorText, setError] = useState("");
   const [keywordId, setKeywordId] = useState(null);
-  console.log(keywordId);
+  console.log(process.env.NEXT_PUBLIC_SUPABASE_URL);
   const [fetching, setFetching] = useState(false);
 
   // Adding the searched ouptut title in the supabase database
