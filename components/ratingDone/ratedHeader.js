@@ -5,7 +5,6 @@ import Link from "next/link";
 
 const ratedTitle = ({ id, title, createdAt }) => {
   const [links, setLinks] = useState([]);
-  // console.log(links);
   const [currentId, setCurrentId] = useState("");
   const [open, setOpen] = useState(false);
   //function to fetch the rated links

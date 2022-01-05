@@ -5,14 +5,13 @@ import { urlFetcher } from "../../lib/urlFetcher";
 
 const Lists = ({ link, id, rating, kid, fetchLinkVariable, fetchVariable }) => {
   const [error, setError] = useState(false);
-  console.log(error);
   const [loading, setLoading] = useState(false);
   const [ratingValue, setRatingValue] = useState();
 
   //check if the value is less than 5 or not
   const checkRatingValue = (value) => {
     if (value > 5 || value < 0) {
-      console.log("value should be between 5 and 0");
+      alert("value should be between 5 and 0");
       setError(true);
     } else {
       setRatingValue(value);
@@ -28,7 +27,6 @@ const Lists = ({ link, id, rating, kid, fetchLinkVariable, fetchVariable }) => {
     axios
       .post(`${urlFetcher()}/api/addRating`, body)
       .then((response) => {
-        console.log("rating done");
         fetchLinkVariable(!fetchVariable);
         setLoading(false);
         setRatingValue("");

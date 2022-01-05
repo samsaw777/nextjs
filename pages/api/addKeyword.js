@@ -12,7 +12,6 @@ export default async (req, res) => {
   if (errors) {
     res.status(400).send(errors);
   } else {
-    // console.log("data added");
     res.status(200).send("keyword added in the database!");
 
     await axios.post(`${urlFetcher()}/api/setupKeyword`, {

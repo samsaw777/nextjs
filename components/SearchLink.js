@@ -7,37 +7,7 @@ import { urlFetcher } from "../lib/urlFetcher";
 const SearchList = () => {
   const [keyword, setKeyword] = useState("");
   const [errorText, setError] = useState("");
-  const [keywordId, setKeywordId] = useState(null);
-  console.log(process.env.NEXT_PUBLIC_SUPABASE_URL);
   const [fetching, setFetching] = useState(false);
-
-  // Adding the searched ouptut title in the supabase database
-  // const addKeyWord = async () => {
-  //   let { data, error } = await supabase
-  //     .from("keywords")
-  //     .insert({ title: newTaskText });
-
-  //   setKeywordId(data[0].id);
-
-  //   //add the links into the tables
-  //   if (error) setError(error.message);
-  //   else console.log("sucessfully added into the database!");
-  // };
-
-  //Adding the searched output list in the supabase database.
-  const addOutputList = async (link, keywordId) => {
-    console.log(keywordId);
-    let { data, error } = await supabase.from("links").insert([
-      {
-        kid: keywordId,
-        link: link,
-        rating: 0,
-      },
-    ]);
-
-    if (error) setError(error.message);
-    else console.log("Links added into the liks database!");
-  };
 
   // Taking the input and searching for the top ten google sites.
   const searchTopTenSites = async (e) => {
@@ -48,7 +18,6 @@ const SearchList = () => {
         keyword,
       })
       .then((res) => {
-        console.log(res);
         setKeyword("");
       })
       .catch((error) => {
