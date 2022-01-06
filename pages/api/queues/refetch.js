@@ -17,6 +17,9 @@ const addLinkToDatabase = async (link, keywordId) => {
   ]);
 
   if (error) console.log(error);
+  else {
+    console.log("links added in the data base!");
+  }
 };
 
 //function to update the end date of the link
