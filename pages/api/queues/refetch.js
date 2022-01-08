@@ -59,8 +59,8 @@ export default Queue("api/queues/refetch", async (payload) => {
   }
 
   console.log(keyword);
-  //use the keyword to fetch the links
 
+  //use the keyword to fetch the links
   const options = {
     method: "GET",
     url: `https://google-search3.p.rapidapi.com/api/v1/search/q=${keyword}&num=10`,
@@ -68,7 +68,7 @@ export default Queue("api/queues/refetch", async (payload) => {
       "x-user-agent": "desktop",
       "x-proxy-location": "US",
       "x-rapidapi-host": "google-search3.p.rapidapi.com",
-      "x-rapidapi-key": "416fbecb1amsh9d477032fa6414dp11c18ejsn07784bb5eb92",
+      "x-rapidapi-key": "5a03d19380mshd239289b441cae0p1cf6bdjsn88e1f9946891",
     },
   };
 
