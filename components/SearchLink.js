@@ -18,6 +18,10 @@ const SearchList = () => {
     await axios
       .post(`${urlFetcher()}/api/addKeyword`, {
         keyword,
+        user_id: user.id,
+        user_email: user.user_metadata.email,
+        user_name: user.user_metadata.name,
+        user_image: user.user_metadata.avatar_url,
       })
       .then((res) => {
         setKeyword("");

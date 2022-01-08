@@ -3,7 +3,14 @@ import axios from "axios";
 import { supabase } from "../../../lib/initSupabase";
 
 // function to save the links in the database
-const addLinkToDatabase = async (link, keywordId) => {
+const addLinkToDatabase = async (
+  link,
+  keywordId,
+  user_name,
+  user_email,
+  user_id,
+  user_image
+) => {
   const date = new Date();
   date.setDate(date.getDate() + 7);
 
@@ -13,6 +20,10 @@ const addLinkToDatabase = async (link, keywordId) => {
       link: link,
       rating: 0,
       check_date: date.toISOString(),
+      user_id: user_id,
+      user_image: user_image,
+      user_fullname: user_name,
+      user_email: user_email,
     },
   ]);
 
@@ -42,7 +53,8 @@ const updateLinkDate = async (link) => {
 
 //setting up the queue for the cron job to be done
 export default Queue("api/queues/refetch", async (payload) => {
-  const { keyword, keywordId } = payload;
+  const { keyword, keywordId, user_name, user_email, user_image, user_id } =
+    payload;
   //fetch all the links and compare.
   const allLinks = [];
   const { data: links, error } = await supabase
@@ -81,7 +93,14 @@ export default Queue("api/queues/refetch", async (payload) => {
         if (allLinks.indexOf(result.link) != -1) {
           updateLinkDate(result.link);
         } else {
-          addLinkToDatabase(result.link, keywordId);
+          addLinkToDatabase(
+            result.link,
+            keywordId,
+            user_name,
+            user_email,
+            user_id,
+            user_image
+          );
         }
       });
     })
