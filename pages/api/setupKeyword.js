@@ -8,7 +8,7 @@ export default async (req, res) => {
     id: keyword,
     // delay: "1min",
     repeat: {
-      every: "5min",
+      every: "168min",
     },
   });
 

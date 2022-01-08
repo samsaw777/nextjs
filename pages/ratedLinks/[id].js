@@ -10,7 +10,7 @@ const DynamicLinks = () => {
   // console.log(id);
   const [ratedLinks, setRatedLinks] = useState([]);
   const [title, setTitle] = useState([]);
-  // console.log(title);
+
   const [link, setLinks] = useState([]);
   // console.log(link);
   //function to fetch the rated links
@@ -22,7 +22,7 @@ const DynamicLinks = () => {
         setRatedLinks(response.data);
       })
       .catch((error) => {
-        console.log(error);
+        console.log(error.message);
       });
   };
 
@@ -33,6 +33,7 @@ const DynamicLinks = () => {
       .post(`${urlFetcher()}/api/getTitle`, body)
       .then((response) => {
         setTitle(response.data);
+        console.log(response.data);
       })
       .catch((error) => {
         console.log(error);

@@ -8,7 +8,7 @@ const ratedLinks = () => {
   //function to fetch the titles
   const fetchRatedLinksTitle = async () => {
     await axios
-      .get(`${urlFetcher}/api/fetchTitle`)
+      .get(`${urlFetcher()}/api/fetchTitle`)
       .then((response) => {
         setLinksTitle(response.data);
       })

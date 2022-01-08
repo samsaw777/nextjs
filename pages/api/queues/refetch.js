@@ -58,7 +58,7 @@ export default Queue("api/queues/refetch", async (payload) => {
     });
   }
 
-  console.log(allLinks);
+  console.log(keyword);
   //use the keyword to fetch the links
 
   const options = {
@@ -86,7 +86,8 @@ export default Queue("api/queues/refetch", async (payload) => {
       });
     })
     .catch((error) => {
-      return error;
+      // return error;
+      console.log(error);
     });
 
   // return linksArray;
