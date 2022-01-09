@@ -83,13 +83,16 @@ const LinksPage = () => {
   useEffect(() => {
     fetchLinkKeyword();
     fetchLinks();
+    fetchRatedLinks();
   }, [ratingVariable]);
 
   return (
     <div className="block mx-5 mt-10">
       <div className="bg-white rounded-md shadow-md p-4 space-y-4">
         <div className="flex justify-between">
-          <div className=" flex text-xl pt-3">{keyword[0]?.title}</div>
+          <div className=" flex text-xl pt-3 font-medium">
+            {keyword[0]?.title}
+          </div>
           <div className="flex ">
             {keyword[0]?.user_image && (
               <Image
