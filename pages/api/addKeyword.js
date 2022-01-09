@@ -7,7 +7,7 @@ export default async (req, res) => {
   //add the keyword into the database
   const { data: keywordData, errors } = await supabase
     .from("keywords")
-    .insert({ title: keyword });
+    .insert({ title: keyword, user_id, user_name, user_email, user_image });
 
   if (errors) {
     res.status(400).send(errors);

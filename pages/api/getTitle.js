@@ -2,10 +2,9 @@ import { supabase } from "../../lib/initSupabase";
 
 export default async (req, res) => {
   const { id } = req.body;
-
   const { data: title, error } = await supabase
     .from("keywords")
-    .select("title")
+    .select("*")
     .match({
       id: id,
     });
