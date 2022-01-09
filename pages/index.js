@@ -11,7 +11,9 @@ export default function Home() {
       (event, session) => {
         fetch("/api/auth", {
           method: "POST",
-          headers: new Header({ "Content-Type": "application/json" }),
+          headers: {
+            "Content-Type": "application/json",
+          },
           credentials: "same-origin",
           body: JSON.stringify({ event, session }),
         }).then((res) => res.json());
